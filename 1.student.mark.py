@@ -1,3 +1,4 @@
+# input func
 def num_students():
     num_stu = int(input("Enter the number of students: "))
     return num_stu
@@ -30,6 +31,7 @@ def input_marks(students, courses):
     for student in students:
         mark = float(input(f"Enter mark for {student['Student Name']} in course {course_id}: "))
         student["Marks"][course_id] = mark
+# list func
 def list_stu(students):
     for student in students:
         print(f"Student ID: {student['Student ID']}, Name: {student['Student Name']}, DOB: {student['DoB']}")
@@ -91,6 +93,6 @@ def main():
             print("Exiting.")
             break
         else:
-            print("Invalid choice, please try again.")
+            print("Try again")
 if __name__ == "__main__":
-    main()
+    main()    
