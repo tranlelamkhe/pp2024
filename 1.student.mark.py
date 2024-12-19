@@ -8,7 +8,7 @@ def student_info(num_stu):
         stu_id = input(f"Enter student ID {i+1}: ")
         stu_name = input(f"Enter student name {i+1}: ")
         dob = input(f"Enter student DOB {i+1}: ")
-        students.append({"Student ID": stu_id, "Student Name": stu_name, "DoB": dob, "Marks": {}})
+        students.append({"Student ID": stu_id, "Student name": stu_name, "DoB": dob, "Marks": {}})
     return students
 def num_courses():
     num_c = int(input("Enter the number of courses: "))
@@ -29,21 +29,21 @@ def select_course(courses):
 def input_marks(students, courses):
     course_id = select_course(courses)
     for student in students:
-        mark = float(input(f"Enter mark for {student['Student Name']} in course {course_id}: "))
+        mark = float(input(f"Enter mark for {student["Student name"]} in course {course_id}: "))
         student["Marks"][course_id] = mark
 # list func
 def list_stu(students):
     for student in students:
-        print(f"Student ID: {student['Student ID']}, Name: {student['Student Name']}, DOB: {student['DoB']}")
+        print(f"Student ID: {student["Student ID"]}, Name: {student["Student name"]}, DOB: {student["DoB"]}")
 def list_courses(courses):
     for course in courses:
-        print(f"Course ID: {course[0]}, Course Name: {course[1]}")
+        print(f"Course ID: {course[0]}, Course name: {course[1]}")
 def show_marks(students, courses):
     course_id = select_course(courses)
     print(f"\nMark of student in course {course_id}:")
     for student in students:
         mark = student["Marks"].get(course_id, "No input")
-        print(f"Student {student['Student Name']} (ID: {student['Student ID']}) - Marks: {mark}")
+        print(f"Student {student["Student name"]} (ID: {student["Student ID"]}) - Marks: {mark}")
 def main():
     students = []
     courses = []
@@ -67,17 +67,17 @@ def main():
             num_courses_value = num_courses()
         elif choice == "3":
             if num_students_value == 0:
-                print("Please input the number of students first.")
+                print("Input the number of students first")
             else:
                 students = student_info(num_students_value)
         elif choice == "4":
             if num_courses_value == 0:
-                print("Please input the number of courses first.")
+                print("Input the number of courses first")
             else:
                 courses = course_info(num_courses_value)
         elif choice == "5":
             if not students or not courses:
-                print("Please input student and course info first.")
+                print("Input student and course info first")
             else:
                 input_marks(students, courses)
         elif choice == "6":
@@ -86,11 +86,11 @@ def main():
             list_stu(students)
         elif choice == "8":
             if not students or not courses:
-                print("Please input student and course info first.")
+                print("Input student and course info first.")
             else:
                 show_marks(students, courses)
         elif choice == "9":
-            print("Exiting.")
+            print("Exiting")
             break
         else:
             print("Try again")
