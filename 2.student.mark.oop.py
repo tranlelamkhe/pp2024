@@ -36,7 +36,7 @@ class Course:
         self.course_name = course_name
         self.course_id = course_id
     def __str__(self):
-        return f"Course ID: {self.id}, Course name: {self.name}"
+        return f"Course ID: {self.course_id}, Course name: {self.course_name}"
 class Student:
     def __init__(self,stu_id, stu_name, dob):
         self.stu_id = stu_id
