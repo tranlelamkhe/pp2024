@@ -26,10 +26,10 @@ def select_course(courses):
     choice = int(input("Enter your choice: "))
     return courses[choice - 1]
 def input_marks(class_inst):
-    select_course = select_course(class_inst.courses)
+    selected_course = select_course(class_inst.courses)
     for student in class_inst.students:
-        mark = float(input(f"Enter mark for {student.student_name} in course {select_course.course_name}: "))
-        marks = Marks(student, select_course, mark)
+        mark = float(input(f"Enter mark for {student.stu_name} in course {selected_course.course_name}: "))
+        marks = Marks(student, selected_course, mark)
         class_inst.add_mark(marks)
 class Course:
     def __init__(self, course_id, course_name):
@@ -63,6 +63,7 @@ class Class:
         self.courses.append(course)
     def add_mark(self, marks):
         self.markss.append(marks)
+        marks.student.marks[marks.course.course_id] = marks.mark
     def list_stu(self):
         for student in  self.students:
             print(student)
@@ -70,8 +71,17 @@ class Class:
         for course in self.courses:
             print(course)
     def show_marks(self):
-        for marks in self.markss:
-            print(marks)
+        course = select_course(self.courses)
+        print(f"\nMark of students in course {course.course_name} ({course.course_id}):")
+        marks_found = False
+        for student in self.students:
+            mark = student.marks.get(course.course_id, "No input")
+            if mark != "No input":
+                marks_found = True
+                print(f"Student {student.stu_name} (ID: {student.stu_id}) - Marks: {mark}")
+            else:
+                print(f"Student {student.stu_name} (ID: {student.stu_id}) - Marks: No input")
+
 def main():
     school = Class()
     while True:
